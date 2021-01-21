@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 import React, { useEffect, useState } from "react";
 import { Route, Switch, BrowserRouter as Router } from "react-router-dom";
 import { either, isEmpty, isNil } from "ramda";
@@ -69,6 +70,8 @@ const App = () => {
 
 export default App;
 =======
+=======
+>>>>>>> 6c03114... initial commit
 import React from 'react'
 import './App.scss'
 
@@ -79,4 +82,7 @@ export default function App() {
         </div>
     )
 }
+<<<<<<< HEAD
+>>>>>>> 6c03114... initial commit
+=======
 >>>>>>> 6c03114... initial commit

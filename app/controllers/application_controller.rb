@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
 <<<<<<< HEAD
+<<<<<<< HEAD
     # skip_before_action :verify_authenticity_token
 
     def authenticate_user_using_x_auth_token
@@ -24,6 +25,8 @@ class ApplicationController < ActionController::Base
           @current_user
         end  
 
+=======
+>>>>>>> 6c03114... initial commit
 =======
 >>>>>>> 6c03114... initial commit
 end
