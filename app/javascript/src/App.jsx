@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useEffect, useState } from "react";
 import { Route, Switch, BrowserRouter as Router } from "react-router-dom";
 import { either, isEmpty, isNil } from "ramda";
@@ -67,3 +68,15 @@ const App = () => {
 };
 
 export default App;
+=======
+import React from 'react'
+import './App.scss'
+
+export default function App() {
+    return (
+        <div>
+            <h1>Hey this is react app</h1>
+        </div>
+    )
+}
+>>>>>>> 6c03114... initial commit
