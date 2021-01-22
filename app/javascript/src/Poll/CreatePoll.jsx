@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Poll from 'react-polls';
 import poll from '../apis/poll'
+import vote from '../apis/vote'
 
 // Declaring poll question and answers
 const pollQuestion = 'Is react-polls useful?'
@@ -34,9 +35,11 @@ class CreatePoll extends Component {
     //     console.log(res,"res from createpoll")
     // }).catch(err => console.log(err,"error from createpoll"))
 
-    poll.fetchPolls().then(res => console.log(res,"fetch polls" )).catch(err => console.log(err,"error from fetchpolls"))
+    // poll.fetchPolls().then(res => console.log(res,"fetch polls" )).catch(err => console.log(err,"error from fetchpolls"))
 
-    poll.fetchPollById(16).then(res => console.log(res,"fetch poll by id" )).catch(err => console.log(err,"error from fetch poll by id"))
+    // poll.fetchPollById(2).then(res => console.log(res,"fetch poll by id" )).catch(err => console.log(err,"error from fetch poll by id"))
+
+    vote.createVote({vote: {poll_id: 3, option_id: 8}}).then(res => console.log(res,"from create vote")).catch(err => console.log(err,"error from create vote"))
   }
 
   render () {
