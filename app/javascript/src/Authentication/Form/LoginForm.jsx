@@ -91,6 +91,13 @@ const LoginForm = ({
           >
             {loading ? "Signing in..." : "Sign in"}
           </Button>
+          <Grid container>
+            <Grid item>
+              <Link href="/signup" variant="body2">
+                {"Don't have an account? Sign Up"}
+              </Link>
+            </Grid>
+          </Grid>
         </form>
       </div>
     </Container>
