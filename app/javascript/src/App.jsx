@@ -8,6 +8,8 @@ import PrivateRoute from "./Common/PrivateRoute";
 import { getFromLocalStorage } from "./helpers/storage";
 import { setAuthHeaders } from "./apis/axios";
 import CreatePoll from "./Poll/CreatePoll";
+import PollForm from "./Poll/PollForm"
+import ShowPolls from "./Poll/ShowPolls";
 
 const App = () => {
   const [loading, setLoading] = useState(true);
@@ -32,11 +34,12 @@ const App = () => {
       <Switch>
         <Route exact path="/signup" component={Signup} />
         <Route exact path="/login" component={Login} />
+        <Route exact path="/" component={ShowPolls} /> 
         <PrivateRoute
-          path="/"
+          path="/polls/new"
           redirectRoute="/login"
           condition={isLoggedIn}
-          component={CreatePoll}
+          component={PollForm}
         />
       </Switch>
     </Router>
