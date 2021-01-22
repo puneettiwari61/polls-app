@@ -16,7 +16,6 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 
 
 
-
 const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(8),
@@ -37,14 +36,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const SignupForm = ({
+const LoginForm = ({
   handleSubmit,
   setEmail,
   setPassword,
   loading,
-  setPasswordConfirmation,
-  error,
-  helperText
 }) => {
   const classes = useStyles();
 
@@ -56,7 +52,7 @@ const SignupForm = ({
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Sign up
+          Sign in
         </Typography>
         <form className={classes.form} onSubmit={handleSubmit} >
           <TextField
@@ -84,18 +80,7 @@ const SignupForm = ({
             autoComplete="current-password"
             onChange={e => setPassword(e.target.value)}
           />
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            name="confirmPassword"
-            label="Confirm Password"
-            type="password"
-            id="confirm-password"
-            onChange={e => setPasswordConfirmation(e.target.value)}
-          />
-          <FormHelperText error={error}>{helperText}</FormHelperText>
+          {/* <FormHelperText error={error}>{helperText}</FormHelperText> */}
           <Button
             type="submit"
             fullWidth
@@ -104,7 +89,7 @@ const SignupForm = ({
             className={classes.submit}
             disabled={loading}
           >
-            {loading ? "Signing up..." : "Sign up"}
+            {loading ? "Signing in..." : "Sign in"}
           </Button>
         </form>
       </div>
@@ -112,4 +97,4 @@ const SignupForm = ({
   );
 };
 
-export default SignupForm;
+export default LoginForm;

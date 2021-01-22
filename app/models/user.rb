@@ -7,6 +7,7 @@ class User < ApplicationRecord
                 uniqueness: true
 
     has_secure_password
+    has_secure_token :authentication_token
     validates :password, presence: true, length: { minimum: 6 }
 
 end
