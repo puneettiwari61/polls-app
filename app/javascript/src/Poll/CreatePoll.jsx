@@ -30,9 +30,13 @@ class CreatePoll extends Component {
   }
 
   handleClick = () => {
-    poll.createPoll({title: this.state.poll}).then(res => {
-        console.log(res,"res from createpoll")
-    }).catch(err => console.log(err,"error from createpoll"))
+    // poll.createPoll({title: this.state.poll, options_attributes: [{name: "no"}, {name: "yes"}, {name:"cool"}]}).then(res => {
+    //     console.log(res,"res from createpoll")
+    // }).catch(err => console.log(err,"error from createpoll"))
+
+    poll.fetchPolls().then(res => console.log(res,"fetch polls" )).catch(err => console.log(err,"error from fetchpolls"))
+
+    poll.fetchPollById(16).then(res => console.log(res,"fetch poll by id" )).catch(err => console.log(err,"error from fetch poll by id"))
   }
 
   render () {

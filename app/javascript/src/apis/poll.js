@@ -1,10 +1,13 @@
 import axios from "axios";
 
-const createPoll = payload => axios.post("/polls", payload)
-// const signup = payload => axios.post("/users", payload)
+const createPoll = payload => axios.post("/polls", {poll: payload})
+const fetchPolls = () => axios.get("/polls")
+const fetchPollById = (id) => axios.get(`/polls/${id}`)
 
 const poll = {
-    createPoll
+    createPoll,
+    fetchPolls,
+    fetchPollById
 }
 
 export default poll

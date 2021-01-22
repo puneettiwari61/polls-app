@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   post '/users' => 'users#create'
   get '/polls' => 'polls#index'
   post '/polls' => 'polls#create'
+  get '/polls/:id' => 'polls#show'
   resources :sessions, only: :create
 
   root "home#index"
