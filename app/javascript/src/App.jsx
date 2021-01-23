@@ -6,10 +6,14 @@ import Signup from "./Authentication/Signup";
 import Login from "./Authentication/Login";
 import PrivateRoute from "./Common/PrivateRoute";
 import { getFromLocalStorage } from "./helpers/storage";
-import { setAuthHeaders } from "./apis/axios";
+import { setAuthHeaders, resetAuthTokens } from "./apis/axios";
 import CreatePoll from "./Poll/CreatePoll";
-import PollForm from "./Poll/PollForm"
+import PollForm from "./Poll/PollForm";
 import ShowPolls from "./Poll/ShowPolls";
+import Poll from "./Poll/Poll";
+import Header from "./Common/Header";
+import { clearLocalStorage } from "./helpers/storage";
+import authApi from "./apis/auth";
 
 const App = () => {
   const [loading, setLoading] = useState(true);
@@ -21,22 +25,36 @@ const App = () => {
     setAuthHeaders(setLoading);
   }, []);
 
+  const handleLogout = async () => {
+    try{
+      await authApi.logout();
+      clearLocalStorage();
+      resetAuthTokens();
+      window.location.href = "/"
+    } catch (e){
+      console.log(e,"error from logout")
+    }
+   
+  };
+
   if (loading) {
     return (
       <div className="h-screen">
-        <h1>Loading.....</h1> 
+        <h1>Loading.....</h1>
       </div>
     );
   }
 
   return (
     <Router>
+      <Header isLoggedIn={isLoggedIn} handleLogout={handleLogout} />
       <Switch>
         <Route exact path="/signup" component={Signup} />
         <Route exact path="/login" component={Login} />
-        <Route exact path="/" component={ShowPolls} /> 
+        <Route exact path="/" component={ShowPolls} />
+        <Route exact path="/show/polls/:id" component={Poll} />
         <PrivateRoute
-          path="/polls/new"
+          path="/create"
           redirectRoute="/login"
           condition={isLoggedIn}
           component={PollForm}

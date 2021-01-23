@@ -4,8 +4,14 @@ const setToLocalStorage = ({ authToken, email, userId }) => {
   localStorage.setItem("authUserId", userId);
 };
 
+const clearLocalStorage = () => {
+  localStorage.removeItem("authToken");
+  localStorage.removeItem("authEmail");
+  localStorage.removeItem("authUserId");
+};
+
 const getFromLocalStorage = (key) => {
   return localStorage.getItem(key);
 };
 
-export { setToLocalStorage, getFromLocalStorage };
+export { setToLocalStorage, getFromLocalStorage, clearLocalStorage };

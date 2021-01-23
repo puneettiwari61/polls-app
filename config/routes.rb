@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   post '/polls' => 'polls#create'
   get '/polls/:id' => 'polls#show'
   post '/votes' => 'votes#create'
-  resources :sessions, only: :create
+  resource :sessions, only: [:create, :destroy]
 
   root "home#index"
   get '*path', to: 'home#index', via: :all

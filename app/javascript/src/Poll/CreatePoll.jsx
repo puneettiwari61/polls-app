@@ -17,6 +17,8 @@ class CreatePoll extends Component {
     poll: ""
   }
 
+  
+
   // Handling user vote
   // Increments the votes count of answer when the user votes
   handleVote = voteAnswer => {

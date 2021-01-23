@@ -6,6 +6,7 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import Divider from "@material-ui/core/Divider";
 import { Link } from "react-router-dom";
+import { Box, Button } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -14,6 +15,10 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.background.paper,
     margin: "80px auto",
   },
+  pollsHead: {
+    textAlign: "center",
+    fontSize: "30px"
+  }
 }));
 
 export default function ShowPolls() {
@@ -32,11 +37,14 @@ export default function ShowPolls() {
   const classes = useStyles();
 
   return (
-    <List component="nav" className={classes.root} aria-label="mailbox folders">
+    <List component="nav" className={classes.root} >
+      <Box className={classes.pollsHead}>
+        Polls
+      </Box>
       {polls.map((poll) => {
         return (
-          <Link to={`polls/${poll.id}`}>
-            <ListItem key={poll.id} button divider>
+          <Link key={poll.id}  to={`/show/polls/${poll.id}`}>
+            <ListItem button divider>
               <ListItemText primary={poll.title} />
             </ListItem>
           </Link>
