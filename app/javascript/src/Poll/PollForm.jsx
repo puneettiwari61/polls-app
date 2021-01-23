@@ -31,7 +31,8 @@ function getStepContent(
   setTopic,
   setOption1,
   setOption2,
-  setOption3
+  setOption3,
+  setOption4
 ) {
   switch (stepIndex) {
     case 0:
@@ -42,6 +43,7 @@ function getStepContent(
           setOption1={setOption1}
           setOption2={setOption2}
           setOption3={setOption3}
+          setOption4={setOption4}
         />
       );
     case 2:
@@ -62,14 +64,15 @@ export default function PollForm(props) {
   const [option1, setOption1] = React.useState("");
   const [option2, setOption2] = React.useState("");
   const [option3, setOption3] = React.useState("");
+  const [option4, setOption4] = React.useState("");
   const [error, setError] = React.useState(false);
 
   const handleNext = () => {
-    console.log(topic, "topic", option1, option2, option3);
+    console.log(topic, "topic", option1, option2, option3, option4);
     if (!topic) {
       return setError(true);
     }
-    if (activeStep === 1 && (!option1 || !option2 || !option3)) {
+    if (activeStep === 1 && (!option1 || !option2 || !option3 || !option4)) {
       return setError(true);
     }
     if (activeStep === steps.length - 1) {
@@ -94,12 +97,13 @@ export default function PollForm(props) {
           { name: option1 },
           { name: option2 },
           { name: option3 },
+          { name: option4 },
         ],
       })
       .then((res) => {
         console.log(res, "res from createpoll");
         // return (window.location.href = "/");
-         props.history.push("/");
+        props.history.push("/");
       })
       .catch((err) => console.log(err, "error from createpoll"));
   };
@@ -128,7 +132,8 @@ export default function PollForm(props) {
               setTopic,
               setOption1,
               setOption2,
-              setOption3
+              setOption3,
+              setOption4
             )}
             <div style={{ textAlign: "center" }}>
               {error && activeStep !== 2 ? (

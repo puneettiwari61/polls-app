@@ -5,6 +5,7 @@ export default function OptionsForm({
   setOption1,
   setOption2,
   setOption3,
+  setOption4,
 }) {
   return (
     <Grid
@@ -41,6 +42,15 @@ export default function OptionsForm({
         style={{ width: "40%", margin: "20px" }}
         onChange={(e) => setOption3(e.target.value)}
       />
-    </Grid>
+      <TextField
+        size="medium"
+        id="outlined-basic"
+        label="option 4"
+        variant="outlined"
+        placeholder="Enter Option 4.."
+        style={{ width: "40%", margin: "20px" }}
+        onChange={(e) => setOption4(e.target.value)}
+      />
+    </Grid> 
   );
 }

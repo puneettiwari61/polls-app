@@ -7,7 +7,6 @@ import Login from "./Authentication/Login";
 import PrivateRoute from "./Common/PrivateRoute";
 import { getFromLocalStorage } from "./helpers/storage";
 import { setAuthHeaders, resetAuthTokens } from "./apis/axios";
-import CreatePoll from "./Poll/CreatePoll";
 import PollForm from "./Poll/PollForm";
 import ShowPolls from "./Poll/ShowPolls";
 import Poll from "./Poll/Poll";
@@ -26,15 +25,14 @@ const App = () => {
   }, []);
 
   const handleLogout = async () => {
-    try{
+    try {
       await authApi.logout();
       clearLocalStorage();
       resetAuthTokens();
-      window.location.href = "/"
-    } catch (e){
-      console.log(e,"error from logout")
+      window.location.href = "/";
+    } catch (e) {
+      console.log(e, "error from logout");
     }
-   
   };
 
   if (loading) {
@@ -52,7 +50,11 @@ const App = () => {
         <Route exact path="/signup" component={Signup} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/" component={ShowPolls} />
-        <Route exact path="/show/polls/:id" component={Poll} />
+        <Route
+          exact
+          path="/show/polls/:id"
+          render={(props) => <Poll {...props} isLoggedIn={isLoggedIn} />}
+        />
         <PrivateRoute
           path="/create"
           redirectRoute="/login"

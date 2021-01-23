@@ -4,7 +4,7 @@ class VotesController < ApplicationController
     def create
 			poll = Poll.find(params[:vote][:poll_id])
 
-			unless has_user_voted?(poll)
+			unless already_voted?(poll)
 					params[:vote][:user_id] = current_user.id
 					vote = Vote.new(vote_params)
 				if vote.save
@@ -16,6 +16,9 @@ class VotesController < ApplicationController
 				else
 					render status: :unprocessable_entity, json: { errors: @vote.errors.full_messages }
 				end
+
+			else
+				render status: :ok, json: { notice: "You have already voted" }
 			end
 		end
 
@@ -23,8 +26,8 @@ class VotesController < ApplicationController
 
 
   private
-    def has_user_voted?(poll)
-        poll.voter_ids.include?(current_user.id)
+	def already_voted?(poll)
+		poll.voter_ids.include?(current_user.id)
     end
 
     def vote_params
