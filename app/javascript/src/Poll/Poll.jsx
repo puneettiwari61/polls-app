@@ -58,7 +58,7 @@ const SinglePoll = (props) => {
         // this.setState({ pollQuestion: res.data.poll.title, pollAnswers });
         setPollQuestion(res.data.poll.title);
         setPollOptions(pollAnswers);
-        totalVotesCalculator(pollAnswers);
+        calculateTotalVotes(pollAnswers);
       })
       .catch((err) => console.log(err, "error from fetch poll by id"));
   }, []);
@@ -76,12 +76,12 @@ const SinglePoll = (props) => {
           return o;
         });
         setPollOptions(updatePollOptions);
-        totalVotesCalculator(updatePollOptions);
+        calculateTotalVotes(updatePollOptions);
       })
       .catch((err) => console.log(err, "error from create vote"));
   };
 
-  const totalVotesCalculator = (pollAnswers) => {
+  const calculateTotalVotes = (pollAnswers) => {
     const totalVotes = pollAnswers.reduce((acc, cv) => {
       return acc + cv.votes;
     }, 0);

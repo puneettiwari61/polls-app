@@ -8,6 +8,8 @@ import Typography from "@material-ui/core/Typography";
 import PollTitleForm from "./Form/PollTitleForm";
 import OptionsForm from "./Form/OptionsForm";
 import poll from "../apis/poll";
+import {getFromLocalStorage} from "../helpers/storage"
+const getSteps = ["Enter Your Poll Topic", "Enter The Options", "Create Poll"];
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -21,10 +23,6 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: theme.spacing(1),
   },
 }));
-
-function getSteps() {
-  return ["Enter Your Poll Topic", "Enter The Options", "Create Poll"];
-}
 
 function getStepContent(
   stepIndex,
@@ -58,7 +56,7 @@ function getStepContent(
 export default function PollForm(props) {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
-  const steps = getSteps();
+  const steps = getSteps;
 
   const [topic, setTopic] = React.useState("");
   const [option1, setOption1] = React.useState("");
@@ -85,6 +83,8 @@ export default function PollForm(props) {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
+  // const setOptions = (optionNumber) => option
+
   const handleReset = () => {
     setActiveStep(0);
   };
@@ -99,6 +99,7 @@ export default function PollForm(props) {
           { name: option3 },
           { name: option4 },
         ],
+        // user_id: getFromLocalStorage("authUserId")
       })
       .then((res) => {
         console.log(res, "res from createpoll");

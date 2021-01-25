@@ -1,11 +1,9 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
-  post '/users' => 'users#create'
-  get '/polls' => 'polls#index'
-  post '/polls' => 'polls#create'
-  get '/polls/:id' => 'polls#show'
-  post '/votes' => 'votes#create'
+  resource :users, only: [:create]
+  resources :polls, only: [:index, :create, :show]
+  resource :votes, only: [:create]
   resource :sessions, only: [:create, :destroy]
 
   root "home#index"

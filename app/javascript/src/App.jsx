@@ -21,7 +21,8 @@ const App = () => {
 
   useEffect(() => {
     // initializeLogger();
-    setAuthHeaders(setLoading);
+    setAuthHeaders();
+    setLoading(false)
   }, []);
 
   const handleLogout = async () => {

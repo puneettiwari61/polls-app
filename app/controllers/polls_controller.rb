@@ -7,9 +7,11 @@ class PollsController < ApplicationController
     end
     
     def create
-      params[:poll][:user_id] = current_user.id
+      # params[:poll][:user_id] = current_user.id
       # poll = current_user.polls.build(poll_params)
       poll = Poll.new(poll_params)
+      poll.user_id = current_user.id
+
       if poll.save
         # puts "#{poll.options} "
         render status: :ok, json: {notice: "Poll created successfully!", polls: poll}
@@ -28,7 +30,7 @@ class PollsController < ApplicationController
     private
 
       def poll_params
-        params.require(:poll).permit(:title, :user_id, options_attributes: [:name])
+        params.require(:poll).permit(:title, options_attributes: [:name])
       end        
 
 end

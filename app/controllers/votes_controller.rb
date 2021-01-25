@@ -5,8 +5,9 @@ class VotesController < ApplicationController
 			poll = Poll.find(params[:vote][:poll_id])
 
 			unless already_voted?(poll)
-					params[:vote][:user_id] = current_user.id
+					# params[:vote][:user_id] = current_user.id
 					vote = Vote.new(vote_params)
+					vote.user_id = current_user.id
 				if vote.save
 					option = poll.options.detect{ |option| option.id == vote.option_id  }
 					puts "#{vote.option_id} vote"
@@ -14,7 +15,7 @@ class VotesController < ApplicationController
 					option.increment!(:vote_count)
 					render status: :ok, json: { notice: "You have voted successfully" }
 				else
-					render status: :unprocessable_entity, json: { errors: @vote.errors.full_messages }
+					render status: :unprocessable_entity, json: { errors: vote.errors.full_messages }
 				end
 
 			else
@@ -31,7 +32,7 @@ class VotesController < ApplicationController
     end
 
     def vote_params
-        params.required(:vote).permit(:poll_id, :option_id, :user_id)
+        params.required(:vote).permit(:poll_id, :option_id)
     end
 end
     
